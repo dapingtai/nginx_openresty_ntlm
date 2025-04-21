@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: openresty_ntlm_server
+    restart: unless-stopped
+    ports: 
+      - "80:80"
+      - "443:443"
+    image: "openresty:1.25.3.2-ntlm"
+    volumes:
+      - /opt/nginx/conf.d/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - /opt/nginx/ssl:/etc/nginx/ssl
+      - /opt/nginx/modules:/etc/nginx/modules
+      - /opt/nginx/includes:/etc/nginx/includes
+      - /opt/nginx/log:/var/log/nginx
